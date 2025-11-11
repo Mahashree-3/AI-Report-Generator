@@ -42,14 +42,19 @@ Users provide project details such as **title, abstract, workflow, results, imag
 
 academic-report/
 │── my-academic-report/
-│ ├── index.html
-│ ├── app.js
-│ ├── style.css
-│ ├── assets/
+│   ├── index.html
+│   ├── app.js
+│   ├── style.css
+│   ├── assets/
+│       ├── logo.png
+│       ├── sample-output.png
+│       └── ... (other images)
+│
 │── server.js
 │── package.json
 │── package-lock.json
 │── README.md
+
 
 
 ---
