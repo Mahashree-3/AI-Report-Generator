@@ -1,7 +1,8 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-
+import dotenv from "dotenv";
+  dotenv.config();
 // Use your valid API key
-const genAI = new GoogleGenerativeAI("AIzaSyAnxLKInlCaU7wCT39Y3qEGq8-hjaLXUN8");
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEYs);
 
 async function generateReport(projectName, description, workflow, languageUsed) {
   // ✅ Use the stable model
