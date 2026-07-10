@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | AI Report Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        min-height: 100vh;
+        margin: 0;
+        font-family: "Segoe UI", "Poppins", sans-serif;
+        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        background-size: 200% 200%;
+        animation: gradientShift 12s ease infinite;
+        color: #fff;
+        padding: 30px 15px;
+      }
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      .container { max-width: 800px; margin: 0 auto; }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 12px 20px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 14px;
+        backdrop-filter: blur(12px);
+      }
+      .topbar span { font-size: 14px; color: rgba(255,255,255,0.85); }
+      .btn-logout {
+        background: rgba(239,68,68,0.15);
+        border: 1px solid rgba(239,68,68,0.4);
+        color: #fca5a5;
+        padding: 7px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: 0.2s;
+      }
+      .btn-logout:hover { background: rgba(239,68,68,0.3); }
+
+      .header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .header-row h2 { font-weight: 600; margin: 0; }
+
+      .btn-new {
+        padding: 11px 20px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #8b5cf6, #6366f1);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: 0.25s;
+      }
+      .btn-new:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(99,102,241,0.45); }
+
+      .report-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        padding: 20px 22px;
+        margin-bottom: 14px;
+        backdrop-filter: blur(14px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .report-info h3 { font-size: 16.5px; margin-bottom: 4px; }
+      .report-info p { font-size: 13px; color: rgba(255,255,255,0.55); margin: 0; }
+
+      .btn-download {
+        padding: 9px 18px;
+        border: 1px solid rgba(34,197,94,0.4);
+        border-radius: 8px;
+        background: rgba(34,197,94,0.15);
+        color: #86efac;
+        font-size: 13.5px;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: 0.2s;
+      }
+      .btn-download:hover { background: rgba(34,197,94,0.3); }
+      .btn-download:disabled { opacity: 0.6; cursor: not-allowed; }
+
+      .empty-state {
+        text-align: center;
+        padding: 50px 20px;
+        color: rgba(255,255,255,0.55);
+        background: rgba(255,255,255,0.04);
+        border: 1px dashed rgba(255,255,255,0.2);
+        border-radius: 16px;
+      }
+      .empty-state p { margin-bottom: 16px; font-size: 15px; }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="topbar">
+        <span>👋 Welcome, <strong id="usernameDisplay">User</strong></span>
+        <button class="btn-logout" onclick="logout()">Logout</button>
+      </div>
+
+      <div class="header-row">
+        <h2>📊 My Reports</h2>
+        <a href="index.html" class="btn-new">+ Generate New Report</a>
+      </div>
+
+      <div id="reportsList"></div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script type="module" src="dashboard.js"></script>
+  </body>
+</html>

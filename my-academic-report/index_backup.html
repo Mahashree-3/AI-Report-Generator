@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Academic Report Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">◆</span>
+        <span class="brand-name">ReportForge<span class="brand-accent">AI</span></span>
+      </div>
+      <div class="auth-actions" id="authActions">
+        <!-- populated by app.js: shows Login/Register or username + Logout -->
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="hero">
+        <p class="eyebrow">Draft &rarr; Structure &rarr; PDF</p>
+        <h1>Turn project notes into a<br />polished academic report.</h1>
+        <p class="subtitle">Describe your project once. The AI drafts the sections, you download the PDF.</p>
+      </div>
+
+      <div class="panel">
+        <form id="reportForm">
+          <div class="field">
+            <label for="title">Project Title</label>
+            <input type="text" id="title" required placeholder="e.g. Smart Attendance System using Face Recognition" />
+          </div>
+
+          <div class="field">
+            <label for="description">Project Description</label>
+            <textarea id="description" rows="3" required placeholder="What does the project do, and why does it matter?"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="workflow">Workflow</label>
+            <textarea id="workflow" rows="3" required placeholder="Walk through the steps, start to finish"></textarea>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="languages">Languages / Tools</label>
+              <input type="text" id="languages" required placeholder="Python, OpenCV, Flask..." />
+            </div>
+            <div class="field">
+              <label for="figureCaption">Figure Caption</label>
+              <input type="text" id="figureCaption" placeholder="e.g. Result Screenshot" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="resultImage">Upload Result Image</label>
+            <label class="file-drop" for="resultImage">
+              <span id="fileDropText">Click to choose an image, or drag it here</span>
+            </label>
+            <input type="file" id="resultImage" accept="image/*" hidden />
+          </div>
+
+          <button type="submit" class="btn-primary">
+            <span>Generate Report</span>
+          </button>
+        </form>
+
+        <div id="loading" class="loading" style="display:none;">
+          <div class="spinner"></div>
+          <p>Generating report&hellip; please wait</p>
+        </div>
+
+        <div class="download-wrap">
+          <button id="downloadBtn" class="btn-secondary" style="display:none;">
+            Download PDF
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Cosmetic only: show chosen filename in the drop zone
+      document.getElementById('resultImage').addEventListener('change', function (e) {
+        const label = document.getElementById('fileDropText');
+        label.textContent = e.target.files.length ? e.target.files[0].name : 'Click to choose an image, or drag it here';
+      });
+    </script>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
